@@ -26,33 +26,62 @@ def clicked_del():
 def clicked_divide():
     global val
     operator = "/"
-    val = val + "÷"
+    val = val + "/"
     data.set(val)
 def clicked_mult():
      global val
-    # vls = float(val)
+     vls = float(val)
      operator = "*"
      val = val + "*"
      data.set(val)
 def clicked_minus():
     global val
-    #vls = float(val)
+    vls = float(val)
     operator = "-"
     val = val + "-"
     data.set(val)
 def clicked_mod():
     global val
-    #vls = float(val)
+    vls = float(val)
     operator = "%"
     val = val + "%"
     data.set(val)
 
 def clicked_plus():
     global val
-    #vls = float(val)
+    vls = float(val)
     operator = "+"
     val = val + "+"
     data.set(val)
+
+def clicked_equals():
+    global val
+    global vals
+    global operator
+    #val= val.repalce("x","*")
+
+    if operator == "+":
+        result= str(eval(val))
+        data.set(result)
+        val = str(result)
+    elif operator == "-":
+        result= str(eval(val))
+        data.set(result)
+        val = str(result)
+    elif operator == "*":
+        result = str(eval(val))
+        data.set(result)
+        val = str(result)
+    elif operator == "/":
+        result = str(eval(val))
+        data.set(result)
+        val = str(result)
+    elif operator == "%":
+        result = str(eval(val))
+        data.set(result)
+        val = str(result)
+    
+
 
 item=StringVar()
 data = StringVar()
@@ -103,7 +132,8 @@ button0 = Button(btns_frame, text="0", width=10, height=5, command=lambda: click
 button0.grid(row=5, column=1)
 button_del = Button(btns_frame, text="del", width=10, height=5,command=lambda :clicked_del())
 button_del.grid(row=5, column=2)
-button_equals = Button(btns_frame, text="=", width=10, height=5)
+button_equals = Button(btns_frame, text="=", width=10, height=5, command=lambda :clicked_equals())
 button_equals.grid(row=5, column=3)
 
 window.mainloop()
+
