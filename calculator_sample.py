@@ -25,23 +25,41 @@ def clicked_del():
     data.set(val)
 def clicked_divide():
     global val
+    global vls
+    global operator
+    if val.find("-") >= 0 or val.find("+") >= 0 or val.find("*") >= 0 or val.find("/") >= 0 or val.find("%"):
+       clicked_equals()
+    vls = float(val)
     operator = "/"
+
     val = val + "/"
     data.set(val)
 def clicked_mult():
-     global val
-     vls = float(val)
-     operator = "*"
-     val = val + "*"
-     data.set(val)
+    global val
+    global vls
+    global operator
+    if val.find("-") >= 0 or val.find("+") >= 0 or val.find("*") >= 0 or val.find("/") >= 0 or val.find("%"):
+         clicked_equals()
+    vls = float(val)
+    operator = "*"
+    val = val + "*"
+    data.set(val)
 def clicked_minus():
     global val
+    global vls
+    global operator
+    if val.find("-") >= 0 or val.find("+") >= 0 or val.find("*") >= 0 or val.find("/") >= 0 or val.find("%"):
+       clicked_equals()
     vls = float(val)
     operator = "-"
     val = val + "-"
     data.set(val)
 def clicked_mod():
     global val
+    global vls
+    global operator
+    if val.find("-") >= 0 or val.find("+") >= 0 or val.find("*") >= 0 or val.find("/") >= 0 or val.find("%"):
+       clicked_equals()
     vls = float(val)
     operator = "%"
     val = val + "%"
@@ -49,6 +67,10 @@ def clicked_mod():
 
 def clicked_plus():
     global val
+    global vls
+    global operator
+    if val.find("-") >= 0 or val.find("+") >= 0 or val.find("*") >= 0 or val.find("/") >= 0 or val.find("%"):
+       clicked_equals()
     vls = float(val)
     operator = "+"
     val = val + "+"
@@ -58,7 +80,6 @@ def clicked_equals():
     global val
     global vals
     global operator
-    #val= val.repalce("x","*")
 
     if operator == "+":
         result= str(eval(val))
@@ -72,15 +93,20 @@ def clicked_equals():
         result = str(eval(val))
         data.set(result)
         val = str(result)
-    elif operator == "/":
-        result = str(eval(val))
-        data.set(result)
-        val = str(result)
     elif operator == "%":
         result = str(eval(val))
         data.set(result)
         val = str(result)
-    
+    elif operator == "/":
+        try:
+            total = str(eval(val))
+        except:
+            ZeroDivisionError
+        val = "Sorry, Division By Zero Is Not Possible!!!"
+        data.set(val)
+        data.set(total)
+        val = str(total)
+
 
 
 item=StringVar()
@@ -136,4 +162,3 @@ button_equals = Button(btns_frame, text="=", width=10, height=5, command=lambda 
 button_equals.grid(row=5, column=3)
 
 window.mainloop()
-
